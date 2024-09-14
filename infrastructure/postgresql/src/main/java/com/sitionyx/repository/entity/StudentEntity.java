@@ -16,4 +16,5 @@ public class StudentEntity {
     private final Integer age;
 
     private final Integer course;
+
 }

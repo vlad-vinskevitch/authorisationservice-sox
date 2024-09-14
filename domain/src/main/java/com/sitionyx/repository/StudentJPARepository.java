@@ -1,4 +1,4 @@
 package com.sitionyx.repository;
 
-public class StudentJPARepository implements {
+public class StudentJPARepository{
 }
