@@ -8,12 +8,14 @@
         <version>3.3.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.sitionix</groupId>
-    <artifactId>athssox</artifactId>
+    <groupId>com.sitionix.athssox</groupId>
+    <artifactId>authorisationservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <packaging>pom</packaging>
     <name>authorisationservice-sox</name>
     <description>Service for auth</description>
+
     <url/>
     <licenses>
         <license/>
@@ -27,7 +29,6 @@
         <module>api-rest</module>
         <module>application</module>
         <module>infrastructure</module>
-        <module>infrastructure/postgresql</module>
         <module>jacoco-report</module>
     </modules>
     <scm>
