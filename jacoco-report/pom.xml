@@ -87,7 +87,6 @@
                 </executions>
             </plugin>
 
-            <!-- SonarQube Plugin for analysis -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
