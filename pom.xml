@@ -78,6 +78,15 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
+                    <configuration>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>1.6.2</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -89,6 +98,7 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
                         <mainClass>${project.groupId}Application</mainClass>
+
                     </configuration>
                 </plugin>
             </plugins>
