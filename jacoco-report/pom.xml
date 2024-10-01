@@ -54,13 +54,11 @@
 
     <build>
         <plugins>
-            <!-- JaCoCo Maven Plugin for code coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
                 <executions>
-                    <!-- Prepare the JaCoCo agent for coverage data collection -->
                     <execution>
                         <id>prepare-agent</id>
                         <goals>
@@ -68,7 +66,6 @@
                         </goals>
                         <phase>test</phase>
                     </execution>
-                    <!-- Aggregate the coverage reports -->
                     <execution>
                         <id>report-aggregate</id>
                         <goals>

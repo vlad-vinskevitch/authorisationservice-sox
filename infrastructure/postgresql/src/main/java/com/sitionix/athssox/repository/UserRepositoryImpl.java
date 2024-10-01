@@ -15,9 +15,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     private final UserInfraMapper userInfraMapper;
 
-
     @Override
-    public User execute(final User user) {
+    public User createUser(final User user) {
 
         final UserEntity userEntity = this.userInfraMapper.asUserEntity(user);
         final UserEntity createdUser = this.userJpaRepository.save(userEntity);
