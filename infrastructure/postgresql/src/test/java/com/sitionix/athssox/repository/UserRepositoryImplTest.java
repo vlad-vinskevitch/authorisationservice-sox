@@ -6,6 +6,7 @@ import com.sitionix.athssox.jpa.UserJpaRepository;
 import com.sitionix.athssox.mapper.UserInfraMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -41,17 +42,12 @@ class UserRepositoryImplTest {
     void givenUser_thenCreateUser_thenReturnCreatedUser() {
 
         //given
-        final Long givenUserId = null;
-        final String givenUserPassword = "password";
 
-        final Long createdUserId = 1L;
-        final String createdUserPassword = "null";
+        final User givenUser = Mockito.mock(User.class);
+        final User createdUser = Mockito.mock(User.class);
 
-        final User givenUser = this.getUser(givenUserId, givenUserPassword);
-        final User createdUser = this.getUser(createdUserId, createdUserPassword);
-
-        final UserEntity givenUserEntity = this.getUserEntity(givenUserId);
-        final UserEntity createdUserEntity = this.getUserEntity(createdUserId);
+        final UserEntity givenUserEntity = Mockito.mock(UserEntity.class);
+        final UserEntity createdUserEntity = Mockito.mock(UserEntity.class);
 
         when(this.userInfraMapper.asUserEntity(givenUser)).thenReturn(givenUserEntity);
         when(this.userInfraMapper.asUser(createdUserEntity)).thenReturn(createdUser);
@@ -63,22 +59,6 @@ class UserRepositoryImplTest {
 
         //then
         assertThat(actual).isEqualTo(createdUser);
-    }
-
-    private User getUser(final Long id,final String password) {
-        return User.builder()
-                .id(id)
-                .userName("userName")
-                .password(password)
-                .build();
-    }
-
-    private UserEntity getUserEntity(final Long id) {
-        return UserEntity.builder()
-                .id(id)
-                .userName("userName")
-                .password("password")
-                .build();
     }
 
 }

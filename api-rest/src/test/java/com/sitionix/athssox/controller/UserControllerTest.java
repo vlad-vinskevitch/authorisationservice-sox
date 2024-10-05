@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -46,13 +47,11 @@ class UserControllerTest {
     void givenUserDTO_whenCreate_thenReturnCreatedUser() {
 
         //given
-        final Long givenUserId = null;
-        final Long expectedUserId = 1L;
 
-        final UserDTO userDTO = this.getUserDTO();
-        final User user = this.getUser(givenUserId);
+        final UserDTO userDTO = Mockito.mock(UserDTO.class);
+        final User user = Mockito.mock(User.class);
+        final UserResponseDTO expectedBody = Mockito.mock(UserResponseDTO.class);
 
-        final UserResponseDTO expectedBody = this.getUserResponseDTO(expectedUserId);
         final ResponseEntity<UserResponseDTO> expectedResponse = ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(expectedBody);
@@ -74,23 +73,4 @@ class UserControllerTest {
         verify(this.createUser, times(1)).execute(user);
     }
 
-    private UserDTO getUserDTO() {
-        return new UserDTO()
-                .username("username")
-                .password("password");
-    }
-
-    private UserResponseDTO getUserResponseDTO(final Long id) {
-        return new UserResponseDTO()
-                .id(id)
-                .username("username");
-    }
-
-    private User getUser(final Long id) {
-        return User.builder()
-                .userName("userName")
-                .id(id)
-                .password("password")
-                .build();
-    }
 }
