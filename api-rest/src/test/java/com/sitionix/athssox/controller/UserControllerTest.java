@@ -5,6 +5,7 @@ import com.app_afesox.athssox.api_first.dto.UserResponseDTO;
 import com.sitionix.athssox.domain.User;
 import com.sitionix.athssox.mapper.UserApiMapper;
 import com.sitionix.athssox.usecase.CreateUser;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -43,6 +44,13 @@ class UserControllerTest {
     @MockBean
     private UserApiMapper userApiMapper;
 
+    @AfterEach
+    public void tearDown (){
+        verifyNoMoreInteractions(
+                this.createUser,
+                this.userApiMapper);
+    }
+
     @Test
     void givenUserDTO_whenCreate_thenReturnCreatedUser() {
 
@@ -64,8 +72,7 @@ class UserControllerTest {
         final ResponseEntity<UserResponseDTO> actualResponse = this.userController.createUser(userDTO);
 
         //then
-        assertThat(expectedResponse.getStatusCode()).isEqualTo(actualResponse.getStatusCode());
-        assertThat(expectedResponse.getBody()).isEqualTo(actualResponse.getBody());
+        assertThat(expectedResponse).isEqualTo(actualResponse);
 
         //verify
         verify(this.userApiMapper, times(1)).asUser(userDTO);

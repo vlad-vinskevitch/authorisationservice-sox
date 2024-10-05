@@ -4,6 +4,7 @@ import com.sitionix.athssox.domain.User;
 import com.sitionix.athssox.entity.UserEntity;
 import com.sitionix.athssox.jpa.UserJpaRepository;
 import com.sitionix.athssox.mapper.UserInfraMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -14,7 +15,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 @ExtendWith(SpringExtension.class)
 class UserRepositoryImplTest {
@@ -38,6 +40,13 @@ class UserRepositoryImplTest {
     @MockBean
     public UserInfraMapper userInfraMapper;
 
+    @AfterEach
+    public void tearDown (){
+        verifyNoMoreInteractions(
+                this.userJpaRepository,
+                this.userInfraMapper);
+    }
+
     @Test
     void givenUser_thenCreateUser_thenReturnCreatedUser() {
 
@@ -58,7 +67,14 @@ class UserRepositoryImplTest {
         final User actual = this.userRepositoryImpl.createUser(givenUser);
 
         //then
+
         assertThat(actual).isEqualTo(createdUser);
+
+        //verify
+
+        verify(this.userInfraMapper, times(1)).asUser(createdUserEntity);
+        verify(this.userInfraMapper, times(1)).asUserEntity(givenUser);
+        verify(this.userJpaRepository, times(1)).save(givenUserEntity);
     }
 
 }
