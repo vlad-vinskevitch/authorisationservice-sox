@@ -66,9 +66,7 @@ class UserApiMapperTest {
     }
 
     private UserDTO getUserDTO() {
-        return new UserDTO()
-                .password("password")
-                .username("username");
+        return new UserDTO("username", "password");
     }
 
     private User getUser(final Long id) {
