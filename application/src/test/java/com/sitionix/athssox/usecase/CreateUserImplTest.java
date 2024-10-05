@@ -36,7 +36,6 @@ class CreateUserImplTest {
     @Autowired
     private CreateUserImpl createUser;
 
-
     @AfterEach
     public void tearDown (){
         verifyNoMoreInteractions(
