@@ -20,7 +20,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-
 @ExtendWith(SpringExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class UserControllerTest {
@@ -47,10 +46,13 @@ class UserControllerTest {
     void givenUserDTO_whenCreate_thenReturnCreatedUser() {
 
         //given
-        final Long userId = 1L;
-        final UserDTO userDTO = getUserDTO();
-        final User user = getUser(null);
-        final UserResponseDTO expectedBody = getUserResponseDTO(userId);
+        final Long givenUserId = null;
+        final Long expectedUserId = 1L;
+
+        final UserDTO userDTO = this.getUserDTO();
+        final User user = this.getUser(givenUserId);
+
+        final UserResponseDTO expectedBody = this.getUserResponseDTO(expectedUserId);
         final ResponseEntity<UserResponseDTO> expectedResponse = ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(expectedBody);
@@ -78,13 +80,13 @@ class UserControllerTest {
                 .password("password");
     }
 
-    private UserResponseDTO getUserResponseDTO(Long id) {
+    private UserResponseDTO getUserResponseDTO(final Long id) {
         return new UserResponseDTO()
                 .id(id)
                 .username("username");
     }
 
-    private User getUser(Long id) {
+    private User getUser(final Long id) {
         return User.builder()
                 .userName("userName")
                 .id(id)

@@ -56,7 +56,6 @@ class UserInfraMapperImplTest {
 
     }
 
-
     private User getUser() {
         return User.builder()
                 .id(1L)
@@ -72,6 +71,4 @@ class UserInfraMapperImplTest {
                 .password("password")
                 .build();
     }
-
-
 }

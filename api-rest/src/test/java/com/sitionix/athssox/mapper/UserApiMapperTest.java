@@ -14,7 +14,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @ExtendWith(SpringExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class UserApiMapperTest {
@@ -33,8 +32,9 @@ class UserApiMapperTest {
     @Test
     void givenUser_whenAsUserResponseDTO_thenReturnUserResponseDTO() {
         //given
-        final Long usedId = 1L;
-        final User given = this.getUser(usedId);
+        final Long givenUsedId = 1L;
+
+        final User given = this.getUser(givenUsedId);
         final UserResponseDTO expected = this.getUserResponseDTO();
 
         //when

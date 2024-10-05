@@ -20,9 +20,9 @@ import static org.mockito.Mockito.when;
 class CreateUserImplTest {
 
     @TestConfiguration
-    static class TestContextConfiguration{
+    static class TestContextConfiguration {
         @Bean
-        public CreateUserImpl createUserImpl(final UserRepository userRepository){
+        public CreateUserImpl createUserImpl(final UserRepository userRepository) {
             return new CreateUserImpl(userRepository);
         }
     }
@@ -40,11 +40,11 @@ class CreateUserImplTest {
         final Long givenUserId = null;
         final String givenPassword = "password";
 
-        final Long createdId = 1L;
-        final String createdPassword = null;
+        final Long createdUserId = 1L;
+        final String createdUserPassword = null;
 
-        final User givenUser = getUser(givenUserId, givenPassword);
-        final User createdUser = getUser(createdId, createdPassword);
+        final User givenUser = this.getUser(givenUserId, givenPassword);
+        final User createdUser = this.getUser(createdUserId, createdUserPassword);
 
         when(this.userRepository.createUser(givenUser)).thenReturn(createdUser);
 

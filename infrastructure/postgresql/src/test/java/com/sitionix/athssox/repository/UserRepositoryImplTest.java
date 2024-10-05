@@ -21,9 +21,9 @@ class UserRepositoryImplTest {
     @TestConfiguration
     static class TestContextConfiguration {
         @Bean
-        public UserRepositoryImpl userRepositoryImpl (
+        public UserRepositoryImpl userRepositoryImpl(
                 final UserJpaRepository userJpaRepository,
-                final UserInfraMapper userInfraMapper){
+                final UserInfraMapper userInfraMapper) {
             return new UserRepositoryImpl(userJpaRepository, userInfraMapper);
         }
     }
@@ -38,7 +38,7 @@ class UserRepositoryImplTest {
     public UserInfraMapper userInfraMapper;
 
     @Test
-    void givenUser_thenCreateUser_thenReturnCreatedUser(){
+    void givenUser_thenCreateUser_thenReturnCreatedUser() {
 
         //given
         final Long givenUserId = null;
@@ -47,11 +47,11 @@ class UserRepositoryImplTest {
         final Long createdUserId = 1L;
         final String createdUserPassword = "null";
 
-        final User givenUser = getUser(givenUserId, givenUserPassword);
-        final User createdUser = getUser(createdUserId, createdUserPassword);
+        final User givenUser = this.getUser(givenUserId, givenUserPassword);
+        final User createdUser = this.getUser(createdUserId, createdUserPassword);
 
-        final UserEntity givenUserEntity = getUserEntity(givenUserId);
-        final UserEntity createdUserEntity = getUserEntity(createdUserId);
+        final UserEntity givenUserEntity = this.getUserEntity(givenUserId);
+        final UserEntity createdUserEntity = this.getUserEntity(createdUserId);
 
         when(this.userInfraMapper.asUserEntity(givenUser)).thenReturn(givenUserEntity);
         when(this.userInfraMapper.asUser(createdUserEntity)).thenReturn(createdUser);
@@ -65,14 +65,15 @@ class UserRepositoryImplTest {
         assertThat(actual).isEqualTo(createdUser);
     }
 
-    private User getUser(Long id, String password){
+    private User getUser(final Long id,final String password) {
         return User.builder()
                 .id(id)
                 .userName("userName")
                 .password(password)
                 .build();
     }
-    private UserEntity getUserEntity(Long id){
+
+    private UserEntity getUserEntity(final Long id) {
         return UserEntity.builder()
                 .id(id)
                 .userName("userName")
