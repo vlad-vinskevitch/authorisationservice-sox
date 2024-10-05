@@ -30,6 +30,9 @@ class CreateUserImplTest {
     @MockBean
     private UserRepository userRepository;
 
+    @Autowired
+    private CreateUserImpl createUser;
+
     @Test
     void givenUser_whenCreateUser_thenReturnCreatedUser() {
 
@@ -47,7 +50,7 @@ class CreateUserImplTest {
 
         //when
 
-        final User actual = this.userRepository.createUser(givenUser);
+        final User actual = this.createUser.execute(givenUser);
 
         //then
 
