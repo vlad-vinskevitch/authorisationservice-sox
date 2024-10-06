@@ -134,6 +134,7 @@
                     <includes>
                         <include>**/*IT.java</include>
                     </includes>
+                    <skip>${skipITs}</skip> <!-- Skip integration tests based on the property -->
                 </configuration>
             </plugin>
         </plugins>
