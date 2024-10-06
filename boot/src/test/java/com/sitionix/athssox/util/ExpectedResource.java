@@ -11,7 +11,7 @@ public class ExpectedResource extends ResourceLoader {
 
     private static final String EXPECTED_RESPONSE_FILE_PATH = "/expected/response/%s";
 
-    private static final String EXPECTED_RECORD_FILE_PATH = "/expected/record/%s";
+    private static final String EXPECTED_RECORD_FILE_PATH = "/expected/records/%s";
 
     @Getter
     @Setter(AccessLevel.PRIVATE)
@@ -37,17 +37,17 @@ public class ExpectedResource extends ResourceLoader {
         return super.getFromFile(fileName, typeReference);
     }
 
-    public String record(final String fileName) {
+    public String records(final String fileName) {
         setActualPath(EXPECTED_RECORD_FILE_PATH);
         return super.getFromFile(fileName);
     }
 
-    public <T> T record(final String fileName, final Class<T> tClass) {
+    public <T> T records(final String fileName, final Class<T> tClass) {
         setActualPath(EXPECTED_RECORD_FILE_PATH);
         return super.getFromFile(fileName, tClass);
     }
 
-    public <T> T record(final String fileName, final TypeReference<T> typeReference) {
+    public <T> T records(final String fileName, final TypeReference<T> typeReference) {
         setActualPath(EXPECTED_RECORD_FILE_PATH);
         return super.getFromFile(fileName, typeReference);
     }

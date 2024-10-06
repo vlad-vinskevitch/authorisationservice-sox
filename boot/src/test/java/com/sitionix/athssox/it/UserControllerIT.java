@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @IntegrationTest
-public class UserControllerIT {
+class UserControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
@@ -53,7 +53,7 @@ public class UserControllerIT {
 
         final List<UserEntity> userEntities = this.resourceManager.database().getUsersTable().findAll();
         final List<UserEntity> expectedUserEntities = this.resourceManager.expected()
-                .record("expectedUsersRecordWhenCreateUser.json", new TypeReference<>() {});
+                .records("expectedUsersRecordWhenCreateUser.json", new TypeReference<>() {});
 
         assertThat(userEntities)
                 .usingRecursiveComparison()
