@@ -1,8 +1,7 @@
 package com.sitionix.athssox.controller;
 
 import com.app_afesox.athssox.api_first.api.UserApi;
-import com.app_afesox.athssox.api_first.dto.UserDTO;
-import com.app_afesox.athssox.api_first.dto.UserResponseDTO;
+import com.app_afesox.athssox.api_first.dto.*;
 import com.sitionix.athssox.domain.User;
 import com.sitionix.athssox.mapper.UserApiMapper;
 import com.sitionix.athssox.usecase.CreateUser;
@@ -29,5 +28,15 @@ public class UserController implements UserApi {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(this.userDtoMapper.asUserResponseDTO(createdUser));
+    }
+
+    @Override
+    public ResponseEntity<UserLoginResponse> login(@Valid UserLoginBody userLoginBody) {
+        return UserApi.super.login(userLoginBody);
+    }
+
+    @Override
+    public ResponseEntity<Void> registration(@Valid UserRegistrationBody userRegistrationBody) {
+        return UserApi.super.registration(userRegistrationBody);
     }
 }
