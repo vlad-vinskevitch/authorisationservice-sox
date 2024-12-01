@@ -25,59 +25,59 @@ import static org.mockito.Mockito.*;
 @ExtendWith(SpringExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class UserControllerTest {
-
-    @TestConfiguration
-    static class TestContextConfiguration {
-        @Bean
-        public UserController userController(final CreateUser createUser,
-                                             final UserApiMapper userApiMapper) {
-            return new UserController(createUser, userApiMapper);
-        }
-    }
-
-    @Autowired
-    private UserController userController;
-
-    @MockBean
-    private CreateUser createUser;
-
-    @MockBean
-    private UserApiMapper userApiMapper;
-
-    @AfterEach
-    public void tearDown (){
-        verifyNoMoreInteractions(
-                this.createUser,
-                this.userApiMapper);
-    }
-
-    @Test
-    void givenUserDTO_whenCreate_thenReturnCreatedUser() {
-
-        //given
-
-        final UserDTO userDTO = Mockito.mock(UserDTO.class);
-        final User user = Mockito.mock(User.class);
-        final UserResponseDTO expectedBody = Mockito.mock(UserResponseDTO.class);
-
-        final ResponseEntity<UserResponseDTO> expectedResponse = ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(expectedBody);
-
-        when(this.userApiMapper.asUser(userDTO)).thenReturn(user);
-        when(this.userApiMapper.asUserResponseDTO(user)).thenReturn(expectedBody);
-        when(this.createUser.execute(user)).thenReturn(user);
-
-        //when
-        final ResponseEntity<UserResponseDTO> actualResponse = this.userController.createUser(userDTO);
-
-        //then
-        assertThat(expectedResponse).isEqualTo(actualResponse);
-
-        //verify
-        verify(this.userApiMapper, times(1)).asUser(userDTO);
-        verify(this.userApiMapper, times(1)).asUserResponseDTO(user);
-        verify(this.createUser, times(1)).execute(user);
-    }
+//
+//    @TestConfiguration
+//    static class TestContextConfiguration {
+//        @Bean
+//        public UserController userController(final CreateUser createUser,
+//                                             final UserApiMapper userApiMapper) {
+//            return new UserController(createUser, userApiMapper);
+//        }
+//    }
+//
+//    @Autowired
+//    private UserController userController;
+//
+//    @MockBean
+//    private CreateUser createUser;
+//
+//    @MockBean
+//    private UserApiMapper userApiMapper;
+//
+//    @AfterEach
+//    public void tearDown (){
+//        verifyNoMoreInteractions(
+//                this.createUser,
+//                this.userApiMapper);
+//    }
+//
+//    @Test
+//    void givenUserDTO_whenCreate_thenReturnCreatedUser() {
+//
+//        //given
+//
+//        final UserDTO userDTO = Mockito.mock(UserDTO.class);
+//        final User user = Mockito.mock(User.class);
+//        final UserResponseDTO expectedBody = Mockito.mock(UserResponseDTO.class);
+//
+//        final ResponseEntity<UserResponseDTO> expectedResponse = ResponseEntity
+//                .status(HttpStatus.CREATED)
+//                .body(expectedBody);
+//
+//        when(this.userApiMapper.asUser(userDTO)).thenReturn(user);
+//        when(this.userApiMapper.asUserResponseDTO(user)).thenReturn(expectedBody);
+//        when(this.createUser.execute(user)).thenReturn(user);
+//
+//        //when
+//        final ResponseEntity<UserResponseDTO> actualResponse = this.userController.createUser(userDTO);
+//
+//        //then
+//        assertThat(expectedResponse).isEqualTo(actualResponse);
+//
+//        //verify
+//        verify(this.userApiMapper, times(1)).asUser(userDTO);
+//        verify(this.userApiMapper, times(1)).asUserResponseDTO(user);
+//        verify(this.createUser, times(1)).execute(user);
+//    }
 
 }

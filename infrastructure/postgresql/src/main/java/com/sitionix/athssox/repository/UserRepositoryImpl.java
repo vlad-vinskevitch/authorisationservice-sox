@@ -1,6 +1,7 @@
 package com.sitionix.athssox.repository;
 
 import com.sitionix.athssox.domain.User;
+import com.sitionix.athssox.domain.UserRegistration;
 import com.sitionix.athssox.entity.UserEntity;
 import com.sitionix.athssox.jpa.UserJpaRepository;
 import com.sitionix.athssox.mapper.UserInfraMapper;
@@ -23,4 +24,18 @@ public class UserRepositoryImpl implements UserRepository {
 
         return this.userInfraMapper.asUser(createdUser);
     }
+
+    @Override
+    public Boolean validateEmailExistence(String email) {
+        return this.userJpaRepository.existsByEmail(email);
+    }
+
+    @Override
+    public String registryUser(UserRegistration userRegistrationForm) {
+        final UserEntity userEntity = this.userInfraMapper.fromUserRegistrationToEntity(userRegistrationForm);
+        this.userJpaRepository.save(userEntity);
+        return "Created";
+    }
+
+
 }

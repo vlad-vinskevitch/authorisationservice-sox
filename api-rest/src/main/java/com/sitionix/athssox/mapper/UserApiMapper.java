@@ -1,8 +1,10 @@
 package com.sitionix.athssox.mapper;
 
 import com.app_afesox.athssox.api_first.dto.UserDTO;
+import com.app_afesox.athssox.api_first.dto.UserRegistrationBody;
 import com.app_afesox.athssox.api_first.dto.UserResponseDTO;
 import com.sitionix.athssox.domain.User;
+import com.sitionix.athssox.domain.UserRegistration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -14,4 +16,7 @@ public interface UserApiMapper {
 
     @Mapping(source = "username", target = "userName")
     User asUser(final UserDTO user);
+
+    @Mapping(source ="username" , target = "userName")
+    UserRegistration asRegistration(final UserRegistrationBody userRegistrationDTO);//TODO asUserRegistration
 }

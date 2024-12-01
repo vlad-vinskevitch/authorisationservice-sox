@@ -2,7 +2,9 @@ package com.sitionix.athssox.controller;
 
 import com.app_afesox.athssox.api_first.api.UserApi;
 import com.app_afesox.athssox.api_first.dto.*;
+import com.sitionix.athssox.auth.AuthService;
 import com.sitionix.athssox.domain.User;
+import com.sitionix.athssox.domain.UserRegistration;
 import com.sitionix.athssox.mapper.UserApiMapper;
 import com.sitionix.athssox.usecase.CreateUser;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,8 @@ public class UserController implements UserApi {
 
     private final UserApiMapper userDtoMapper;
 
+    private final AuthService authService;
+
     @Override
     public ResponseEntity<UserResponseDTO> createUser(@Valid UserDTO userDTO) {
 
@@ -36,7 +40,9 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public ResponseEntity<Void> registration(@Valid UserRegistrationBody userRegistrationBody) {
-        return UserApi.super.registration(userRegistrationBody);
+    public ResponseEntity<Void> registration(@Valid UserRegistrationBody userRegistrationBody) {//TODO Rename UserRegistrationBody to UserRegistrationDTO
+        final UserRegistration registration = this.userDtoMapper.asRegistration(userRegistrationBody);
+        return null
+                //ResponseEntity.status(HttpStatus.CREATED);//TODO make with void without response body
     }
 }

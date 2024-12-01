@@ -21,4 +21,10 @@ public class UserEntity {
 
     @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name= "EMAIL")
+    private String email;
+
+    @Column(name = "TOKEN")
+    private String token;
 }
