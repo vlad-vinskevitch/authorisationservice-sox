@@ -41,7 +41,7 @@ public class UserController implements UserApi {
 
     @Override
     public ResponseEntity<Void> registration(@Valid UserRegistrationBody userRegistrationBody) {//TODO Rename UserRegistrationBody to UserRegistrationDTO
-        final UserRegistration registration = this.userDtoMapper.asRegistration(userRegistrationBody);
+        final UserRegistration registration = this.userDtoMapper.asUserRegistration(userRegistrationBody);
         return null
                 //ResponseEntity.status(HttpStatus.CREATED);//TODO make with void without response body
     }

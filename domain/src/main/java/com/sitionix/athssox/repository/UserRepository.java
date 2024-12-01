@@ -9,5 +9,5 @@ public interface UserRepository {
 
     Boolean validateEmailExistence (final String email );
 
-    String registryUser(final UserRegistration userRegistrationForm);
+    void registryUser(final UserRegistration userRegistrationForm);
 }

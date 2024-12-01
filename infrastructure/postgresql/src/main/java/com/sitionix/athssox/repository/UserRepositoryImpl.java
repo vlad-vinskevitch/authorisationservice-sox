@@ -31,10 +31,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public String registryUser(UserRegistration userRegistrationForm) {
-        final UserEntity userEntity = this.userInfraMapper.fromUserRegistrationToEntity(userRegistrationForm);
+    public void registryUser(UserRegistration userRegistrationForm) {
+        final UserEntity userEntity = this.userInfraMapper.asUserEntity(userRegistrationForm);
         this.userJpaRepository.save(userEntity);
-        return "Created";
     }
 
 

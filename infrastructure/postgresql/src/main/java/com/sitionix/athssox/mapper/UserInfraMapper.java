@@ -12,5 +12,5 @@ public interface UserInfraMapper {
 
     User asUser(final UserEntity userEntity);
 
-    UserEntity fromUserRegistrationToEntity (final UserRegistration userRegistration); // TODO перезагрузка метода
+    UserEntity asUserEntity(final UserRegistration userRegistration);
 }

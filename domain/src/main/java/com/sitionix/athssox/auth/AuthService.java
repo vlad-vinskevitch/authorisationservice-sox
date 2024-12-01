@@ -6,7 +6,7 @@ import com.sitionix.athssox.domain.UserToken;
 
 public interface AuthService {
 
-    void registrate (final UserRegistration userRegistrationForm);
+    void registratre (final UserRegistration userRegistrationForm);//TODO
 
     UserToken login(final UserLogin userLoginForm);
 
