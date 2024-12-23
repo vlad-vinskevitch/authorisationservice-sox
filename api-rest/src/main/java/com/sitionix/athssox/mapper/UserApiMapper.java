@@ -18,5 +18,5 @@ public interface UserApiMapper {
     User asUser(final UserDTO user);
 
     @Mapping(source ="username" , target = "userName")
-    UserRegistration asUserRegistration(final UserRegistrationBody userRegistrationDTO);//TODO asUserRegistration
+    UserRegistration asUserRegistration(final UserRegistrationBody userRegistrationDTO);
 }

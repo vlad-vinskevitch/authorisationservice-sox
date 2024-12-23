@@ -35,14 +35,14 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public ResponseEntity<UserLoginResponse> login(@Valid UserLoginBody userLoginBody) {
+    public ResponseEntity<UserAuthResponse> login(@Valid UserLoginBody userLoginBody) {
         return UserApi.super.login(userLoginBody);
     }
 
     @Override
-    public ResponseEntity<Void> registration(@Valid UserRegistrationBody userRegistrationBody) {//TODO Rename UserRegistrationBody to UserRegistrationDTO
+    public ResponseEntity<UserAuthResponse> registration(@Valid UserRegistrationBody userRegistrationBody) {
         final UserRegistration registration = this.userDtoMapper.asUserRegistration(userRegistrationBody);
-        return null
+        return null;
                 //ResponseEntity.status(HttpStatus.CREATED);//TODO make with void without response body
     }
 }

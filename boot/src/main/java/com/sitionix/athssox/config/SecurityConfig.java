@@ -1,5 +1,6 @@
 package com.sitionix.athssox.config;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+@Data
 @Configuration
 @ConfigurationProperties(prefix = "spring.security.argon")
 public class SecurityConfig {
